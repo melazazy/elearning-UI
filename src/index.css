@@ -1,175 +1,39 @@
-body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-      color: #333;
-    }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+@layer base {
+  :root {
+    --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-family-arabic: 'Noto Sans Arabic', system-ui, -apple-system, sans-serif;
+  }
 
-    .header {
-      background-color: #0056b3;
-      color: white;
-      padding: 10px 0;
-      text-align: center;
-    }
+  html[dir='rtl'] {
+    font-family: var(--font-family-arabic);
+  }
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 10px 0;
-    }
+  html[dir='ltr'] {
+    font-family: var(--font-family-sans);
+  }
 
-    .nav a {
-      color: white;
-      text-decoration: none;
-    }
+  /* Ensure proper text alignment in RTL/LTR */
+  [dir='rtl'] {
+    text-align: right;
+  }
 
-    .nav a:hover {
-      text-decoration: underline;
-    }
+  [dir='ltr'] {
+    text-align: left;
+  }
+}
 
-    .section {
-      background-color: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+/* Add custom styles for RTL support */
+[dir='rtl'] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
 
-    .section h2 {
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-    }
-
-    .course-card {
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .course-card h3 {
-      margin-top: 0;
-    }
-
-    .virtual-classroom {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .video-area {
-      width: 80%;
-      height: 400px;
-      background-color: #ddd;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .side-panel {
-      width: 80%;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .chat-panel,
-    .activities-panel {
-      width: 48%;
-      background-color: #f9f9f9;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .dashboard {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .dashboard-section {
-      width: 80%;
-      background-color: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .subscription-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .subscription-card {
-      width: 80%;
-      background-color: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .notification-list {
-      width: 80%;
-      background-color: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .notification-item {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .notification-item:last-child {
-      border-bottom: none;
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        width: 80%;
-      }
-
-      .virtual-classroom {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-
-      .video-area {
-        width: 60%;
-        height: 500px;
-        margin-right: 20px;
-      }
-
-      .side-panel {
-        width: 38%;
-        flex-direction: column;
-      }
-
-      .chat-panel,
-      .activities-panel {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .dashboard-section,
-      .subscription-card,
-      .notification-list {
-        width: 60%;
-      }
-    }
+/* RTL/LTR transitions */
+.transition-direction {
+  transition-property: margin, padding, text-align;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
